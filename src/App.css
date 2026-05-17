@@ -149,8 +149,22 @@ ul.inventory li {
   color: var(--text-main); 
   border: 2px solid var(--text-dim);
   text-shadow: 0 0 5px rgba(57, 255, 20, 0.5); 
-  white-space: nowrap; 
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.bullet-arrow {
+  display: inline-block;
+  margin-right: 6px; /* Adjusts spacing between arrow and text */
+  
+  /* If the arrow still looks a tiny bit too high due to font metrics, 
+    uncomment the line below and tweak the pixel value to nudge it down.
+  */
+  /* transform: translateY(1px); */
+}
+
 /* Utility Animations & Global Links */
 .blink {
   animation: blinker 1s linear infinite;
