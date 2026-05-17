@@ -120,25 +120,26 @@ function App() {
         <section className="section">
           <h2>&gt; INVENTORY</h2>
           <ul className="inventory">
-            <li>► JavaScript</li>
-            <li>► Python</li>
-            <li>► Java</li>
-            <li>► PHP</li>
-            <li>► React.js / Native</li>
-            <li>► Node.js / Express</li>
-            <li>► Laravel</li>
-            <li>► Angular</li>
-            <li>► LangChain</li>
-            <li>► MongoDB</li>
-            <li>► MySQL</li>
-            <li>► Qdrant</li>
-            <li>► Cloudinary CDN</li>
-            <li>► Pandas / NumPy</li>
-            <li>► Matplotlib / Seaborn</li>
-            <li>► Docker</li>
-            <li>► Git</li>
+            <li><span className="bullet-arrow">►</span> JavaScript</li>
+            <li><span className="bullet-arrow">►</span> Python</li>
+            <li><span className="bullet-arrow">►</span> Java</li>
+            <li><span className="bullet-arrow">►</span> PHP</li>
+            <li><span className="bullet-arrow">►</span> React.js / Native</li>
+            <li><span className="bullet-arrow">►</span> Node.js / Express</li>
+            <li><span className="bullet-arrow">►</span> Laravel</li>
+            <li><span className="bullet-arrow">►</span> Angular</li>
+            <li><span className="bullet-arrow">►</span> LangChain</li>
+            <li><span className="bullet-arrow">►</span> MongoDB</li>
+            <li><span className="bullet-arrow">►</span> MySQL</li>
+            <li><span className="bullet-arrow">►</span> Qdrant</li>
+            <li><span className="bullet-arrow">►</span> Cloudinary CDN</li>
+            <li><span className="bullet-arrow">►</span> Pandas / NumPy</li>
+            <li><span className="bullet-arrow">►</span> Matplotlib / Seaborn</li>
+            <li><span className="bullet-arrow">►</span> Docker</li>
+            <li><span className="bullet-arrow">►</span> Git</li>
           </ul>
         </section>
+
 
         {/* SAVE FILES SECTION */}
         <section className="section">
