@@ -84,16 +84,33 @@ function App() {
       <main>
         <section className="section">
           <h2>&gt; INVENTORY (Skills)</h2>
-          <ul className="inventory">
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>Java</li>
-            <li>React.js / Native</li>
-            <li>Angular</li>
-            <li>Node.js / Express</li>
-            <li>Laravel</li>
-            <li>MongoDB / MySQL</li>
-          </ul>
+            <ul className="inventory">
+              {/* Core Languages */}
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>Java</li>
+              <li>PHP</li>
+  
+              {/* Frameworks & Libraries */}
+              <li>React.js / Native</li>
+              <li>Node.js / Express</li>
+              <li>Laravel</li>
+              <li>Angular</li>
+              <li>LangChain</li>
+  
+              {/* Databases & Storage */}
+              <li>MongoDB</li>
+              <li>MySQL</li>
+              <li>Qdrant (Vector DB)</li>
+              <li>Cloudinary CDN</li>
+  
+              {/* Data Science & Tools */}
+              <li>Pandas / NumPy</li>
+              <li>Matplotlib / Seaborn</li>
+              <li>Docker</li>
+              <li>Git</li>
+              <li>Script Automation</li>
+            </ul>
         </section>
 
         <section className="section">
