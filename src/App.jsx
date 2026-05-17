@@ -13,7 +13,7 @@ function App() {
   const projects = [
     {
       id: 'dripcheck',
-      title: '💧 DripCheck — Digital Closet & Outfit Planner',
+      title: <>[ DripCheck ]<br />Digital Closet & Outfit Planner</>,
       tech: 'React Native (Expo), Node.js, Express, MongoDB, Cloudinary, Resend API',
       shortDesc: 'A full-stack mobile solution to manage your digital wardrobe, coordinate daily styles, and track outfit metrics, originally developed as a senior university project.',
       longDesc: (
@@ -34,7 +34,7 @@ function App() {
     },
     {
       id: 'ccsd',
-      title: '📅 CCSD Appointment System — Workflow Scheduling Hub',
+      title: <>[ CCSD System ]<br />Workflow Scheduling Hub</>,
       tech: 'React.js, Node.js, Express.js, MySQL, RESTful APIs, Git',
       shortDesc: 'A dual-portal administrative web platform featuring a comprehensive appointment scheduling system and real-time workflow management infrastructure.',
       longDesc: (
@@ -55,7 +55,7 @@ function App() {
     },
     {
       id: 'batas',
-      title: '⚖️ Batas AI — Intelligent Ordinance Analysis Platform',
+      title: <>[ Batas AI ]<br />Intelligent Ordinance Analysis Platform</>,
       tech: 'Python, LangChain, Node.js, Express, Qdrant Cloud, MongoDB Atlas, Docker',
       shortDesc: 'A production-ready Retrieval-Augmented Generation (RAG) platform built to index, search, and analyze local government ordinances using Gemini 2.5 Flash.',
       longDesc: (
@@ -120,24 +120,23 @@ function App() {
         <section className="section">
           <h2>&gt; INVENTORY</h2>
           <ul className="inventory">
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>Java</li>
-            <li>PHP</li>
-            <li>React.js / Native</li>
-            <li>Node.js / Express</li>
-            <li>Laravel</li>
-            <li>Angular</li>
-            <li>LangChain</li>
-            <li>MongoDB</li>
-            <li>MySQL</li>
-            <li>Qdrant (Vector DB)</li>
-            <li>Cloudinary CDN</li>
-            <li>Pandas / NumPy</li>
-            <li>Matplotlib / Seaborn</li>
-            <li>Docker</li>
-            <li>Git</li>
-            <li>Script Automation</li>
+            <li>► JavaScript</li>
+            <li>► Python</li>
+            <li>► Java</li>
+            <li>► PHP</li>
+            <li>► React.js / Native</li>
+            <li>► Node.js / Express</li>
+            <li>► Laravel</li>
+            <li>► Angular</li>
+            <li>► LangChain</li>
+            <li>► MongoDB</li>
+            <li>► MySQL</li>
+            <li>► Qdrant</li>
+            <li>► Cloudinary CDN</li>
+            <li>► Pandas / NumPy</li>
+            <li>► Matplotlib / Seaborn</li>
+            <li>► Docker</li>
+            <li>► Git</li>
           </ul>
         </section>
 
@@ -198,7 +197,7 @@ function App() {
 
                 <div className="form-group">
                   <label>&gt; INPUT_EMAIL:</label>
-                  <input type="email" name="email" required placeholder="RECRUITER@COMPANY.COM" disabled={formStatus === "SUBMITTING"} />
+                  <input type="email" name="email" required placeholder="PLAYER2@PLAY.COM" disabled={formStatus === "SUBMITTING"} />
                 </div>
 
                 <div className="form-group">
