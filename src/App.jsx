@@ -129,14 +129,13 @@ function App() {
           </div>
         </section>
       </main>
-
-      {/* MODAL OVERLAY */}
       {activeProject && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={closeModal}>X</button>
             
             <h3>{activeProject.title}</h3>
+            <span className="modal-tech">Tech Stack // {activeProject.tech}</span>
             
             <div className="modal-body">
               {/* LEFT COLUMN: Screenshot Box */}
@@ -154,14 +153,13 @@ function App() {
 
               {/* RIGHT COLUMN: Technical Details */}
               <div className="modal-right">
-                <span className="modal-tech">Tech: {activeProject.tech}</span>
                 <div className="modal-desc">
                   {activeProject.longDesc}
                 </div>
                 
                 {/* Dynamic GitHub Link button */}
                 {activeProject.github && (
-                  <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
+                  <div style={{ marginTop: 'auto', paddingTop: '1.5rem', width: '100%' }}>
                     <a 
                       href={activeProject.github} 
                       target="_blank" 
