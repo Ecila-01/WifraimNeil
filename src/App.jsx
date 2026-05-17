@@ -208,7 +208,7 @@ function App() {
               >
                 <div className="form-group">
                   <label>&gt; INPUT_NAME:</label>
-                  <input type="text" name="name" required placeholder="PLAYER 1" disabled={formStatus === "SUBMITTING"} />
+                  <input type="text" name="name" required placeholder="PLAYER 2" disabled={formStatus === "SUBMITTING"} />
                 </div>
 
                 <div className="form-group">
