@@ -158,7 +158,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   3. RETRO MODAL PLATFORM WINDOW
+   3. RETRO MODAL PLATFORM WINDOW (MOBILE RE-ENGINEERED)
    ========================================================================== */
 .modal-overlay {
   position: fixed;
@@ -166,64 +166,71 @@ a:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9); /* Slightly darker for better readability */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
+  padding: 1rem; /* Acts as a natural margin boundary line on small mobile screens */
 }
 
 .modal-content {
   background-color: var(--bg-color);
   border: 2px solid var(--text-main); 
-  padding: 3rem 2rem 2rem; 
-  width: 90vw; 
-  height: 85vh; 
-  max-width: 1400px; 
+  padding: 3.5rem 1.2rem 1.5rem 1.2rem; /* Comfortable inner safe zone */
+  width: 100%; 
+  height: 90vh; /* Maximized operational layout room on smaller viewports */
+  max-width: 1400px;
   position: relative;
-  box-shadow: 8px 8px 0px var(--text-dim); 
+  box-shadow: 6px 6px 0px var(--text-dim); 
   display: flex;
   flex-direction: column;
 }
 
 .modal-content h3 {
   color: var(--accent);
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem; /* Drastically downscaled default baseline for phone viewports */
+  line-height: 1.5;
   text-transform: uppercase;
   flex-shrink: 0;
+  word-break: break-word; /* Allows long titles to cleanly snap into multiple rows */
+  text-align: left;
 }
 
 .modal-body {
   display: flex;
-  flex-direction: column; /* Default stack on mobile screen sizes */
-  gap: 2rem;
-  margin-top: 1rem;
+  flex-direction: column; /* Structural stacked layout defaults for phones */
+  gap: 1.5rem;
+  margin-top: 0.5rem;
   flex-grow: 1; 
-  overflow: hidden; /* Encapsulates scrolling within individual columns */
+  overflow-y: auto; /* CRITICAL: Permits entire body window card scrolling if heights mismatch */
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-tech {
   color: var(--text-dim);
-  font-size: 0.7rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.65rem;
+  margin-bottom: 1rem;
   display: block;
   border-bottom: 1px dashed var(--text-dim);
-  padding-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  word-break: break-word;
 }
 
 /* Close Box Utility Interface */
 .close-btn {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 12px;
+  right: 12px;
   background: var(--bg-color);
   border: 2px solid var(--accent);
   color: var(--accent);
   font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
+  font-size: 0.85rem;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
+  z-index: 10;
   transition: all 0.2s;
 }
 
@@ -234,29 +241,20 @@ a:hover {
 }
 
 /* ==========================================================================
-   4. LEFT COLUMN - 5:4 RETRO HARDWARE MONITOR
+   4. LEFT COLUMN - MOBILE RESPONSIVE RETRO HARDWARE MONITOR
    ========================================================================== */
 .modal-left {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
   width: 100%;
-  overflow: hidden;
-  padding: 0.5rem; /* Small padding to keep it tightly anchored near the borders */
+  flex-shrink: 0; /* Keeps phone monitors from getting squished flat to 0px */
 }
 
 .crt-image-wrapper {
   width: 100%;
-  aspect-ratio: 5 / 4; /* Perfect historical 1280x1024 aspect box */
-  
-  /* REMOVED: max-width: 440px and max-height: 352px constraints are GONE.
-     This allows the container to dynamically scale up to the absolute limits 
-     of the modal's available height and width space. 
-  */
-  max-width: 100%; 
-  max-height: 100%;
-
+  aspect-ratio: 5 / 4;
+  max-width: 480px; /* Uniform width constraint for mobile view framing */
   background-color: #0d0d0d; 
   border: 2px solid var(--text-dim);
   display: flex;
@@ -264,18 +262,19 @@ a:hover {
   justify-content: center;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
 }
+
 .retro-screenshot {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Forces your 5:4 crop to smoothly expand edge-to-edge */
+  object-fit: cover; 
   object-position: center;
-  padding: 0.5rem; /* Beautiful distinct physical monitor bezel border */
+  padding: 0.3rem;
 }
 
-/* Ambient Scanner Scanning Line Overlay */
+/* Ambient Radar Scanning Effects */
 .crt-image-wrapper::before {
   content: "";
   position: absolute;
@@ -299,7 +298,6 @@ a:hover {
   100% { top: 120%; }
 }
 
-/* Subtle scanlines mapped directly to the monitor wrapper scope */
 .crt-image-wrapper::after {
   content: "";
   position: absolute;
@@ -317,89 +315,124 @@ a:hover {
 }
 
 /* ==========================================================================
-   5. RIGHT COLUMN - CRISP CLEAN TERMINAL TECH LOGS
+   5. RIGHT COLUMN - TECH INTERFACES
    ========================================================================== */
 .modal-right {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow-y: auto; 
-  max-height: 100%; 
-  text-align: left !important;
-  align-items: flex-start !important;
+  width: 100%;
 }
 
 .modal-desc {
-  text-align: left !important; 
+  text-align: left !important;
   width: 100%;
   color: #ffffff;
-  
-  /* THE BIG READABILITY TRICK: Switch to a crisp monospace sans-serif 
-     only for dense paragraph blocks so technical recruiters can easily read it. */
   font-family: 'Courier New', Consolas, Monaco, monospace;
-  font-size: 0.85rem; /* Clean readable scale for standard monospace text */
+  font-size: 0.8rem; /* Slightly balanced for small-screen viewport text alignment */
   font-weight: bold;
   line-height: 1.6; 
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
-/* Keep the bold section labels in the retro theme font to match the aesthetic */
 .modal-desc p strong {
   font-family: 'Press Start 2P', cursive;
   color: var(--text-main);
   text-transform: uppercase;
   display: inline-block;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.7rem; /* Adjusted for pixel font display constraints */
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.65rem;
   letter-spacing: 0px;
+  line-height: 1.4;
 }
 
-/* Clean list alignment for technical logs */
 .modal-desc ul {
   text-align: left !important;
   list-style-type: square;
-  padding-left: 1.5rem;
-  margin: 0.5rem 0 1.5rem 0;
+  padding-left: 1.2rem;
+  margin: 0.4rem 0 1.2rem 0;
 }
 
 .modal-desc li {
   text-align: left !important;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   line-height: 1.5;
 }
 
-/* Code block highlight tags */
 .modal-desc code {
   background: #1a1a1a;
   color: var(--accent);
-  padding: 0.1rem 0.4rem;
+  padding: 0.1rem 0.3rem;
   border: 1px solid #333;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
+/* Repository Interface Button */
+.repo-link-btn {
+  display: inline-block;
+  color: var(--accent) !important;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  border: 1px dashed var(--accent);
+  padding: 0.6rem 1.2rem;
+  width: 100%; /* Spans full card row boundary channel width on mobile layout paths */
+  transition: all 0.2s ease;
+}
+
+.repo-link-btn:hover {
+  background-color: var(--accent);
+  color: #000 !important;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Custom Scrollbars */
+.modal-body::-webkit-scrollbar { width: 6px; }
+.modal-body::-webkit-scrollbar-track { background: var(--bg-color); }
+.modal-body::-webkit-scrollbar-thumb { background: var(--text-dim); }
+
 /* ==========================================================================
-   6. RESPONSIVE DESKTOP COLUMN DISTRIBUTION
+   6. RESPONSIVE MEDIA SYSTEM ENGINES (DESKTOP GRID SNAPS)
    ========================================================================== */
 @media (min-width: 992px) {
+  .modal-content {
+    padding: 3rem 2rem 2rem;
+    height: 85vh; /* Revert back to desktop system boundaries */
+  }
+
+  .modal-content h3 {
+    font-size: 1.1rem; /* Crisp presentation sizes for workstation views */
+  }
+
   .modal-body {
-    flex-direction: row; 
+    flex-direction: row; /* Snaps side-by-side elements flawlessly */
     align-items: stretch; 
     gap: 2.5rem;
+    overflow: hidden; /* Locks baseline canvas view so inner logs scroll standalone */
   }
   
   .modal-left {
-    /* Give the left column 60% of the modal width space so the screenshot 
-       becomes massive and fills up the empty black space */
-    flex: 1.2; 
+    flex: 1.2;
+    height: 100%;
+  }
+
+  .crt-image-wrapper {
+    max-width: 100%; /* Explodes up completely into grid columns */
+    max-height: 100%;
   }
   
   .modal-right {
-    /* Give the text 40% of the layout space */
-    flex: 0.8; 
+    flex: 0.8;
+    overflow-y: auto; /* Encapsulates separate document scrolling layout lines */
     border-left: 2px dashed var(--text-dim); 
     padding-left: 2.5rem;
     padding-right: 0.5rem;
+  }
+
+  .repo-link-btn {
+    width: auto; /* Drops down to compact structural boundary layout sizing */
   }
 }
