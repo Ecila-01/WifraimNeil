@@ -13,7 +13,12 @@ function App() {
   const projects = [
     {
       id: 'dripcheck',
-      title: <>[ DripCheck ]<br />Digital Closet & Outfit Planner</>,
+      title: (
+        <>
+          <span>[ DripCheck ]</span>
+          <span>Digital Closet & Outfit Planner</span>
+        </>
+      ),
       tech: 'React Native (Expo), Node.js, Express, MongoDB, Cloudinary, Resend API',
       shortDesc: 'A full-stack mobile solution to manage your digital wardrobe, coordinate daily styles, and track outfit metrics, originally developed as a senior university project.',
       longDesc: (
@@ -34,7 +39,12 @@ function App() {
     },
     {
       id: 'ccsd',
-      title: <>[ CCSD System ]<br />Workflow Scheduling Hub</>,
+      title: (
+        <>
+          <span>[ CCSD System ]</span>
+          <span>Workflow Scheduling Hub</span>
+        </>
+      ),
       tech: 'React.js, Node.js, Express.js, MySQL, RESTful APIs, Git',
       shortDesc: 'A dual-portal administrative web platform featuring a comprehensive appointment scheduling system and real-time workflow management infrastructure.',
       longDesc: (
@@ -55,7 +65,12 @@ function App() {
     },
     {
       id: 'batas',
-      title: <>[ Batas AI ]<br />Intelligent Ordinance Analysis Platform</>,
+      title: (
+        <>
+          <span>[ Batas AI ]</span>
+          <span>Intelligent Ordinance Analysis Platform</span>
+        </>
+      ),
       tech: 'Python, LangChain, Node.js, Express, Qdrant Cloud, MongoDB Atlas, Docker',
       shortDesc: 'A production-ready Retrieval-Augmented Generation (RAG) platform built to index, search, and analyze local government ordinances using Gemini 2.5 Flash.',
       longDesc: (

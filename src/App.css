@@ -118,8 +118,13 @@ h2 {
   margin-bottom: 1rem;
   color: #fff;
   text-align: center;
-  line-height: 1.5;      
-  word-break: break-word;   
+  line-height: 1.5;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+}
+.card h3 span:first-child {
+  white-space: nowrap;
 }
 
 .card p {
