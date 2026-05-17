@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import batasImg from './assets/projects/batas.png';
-import ccsdImg from './assets/projects/ccsd.png'
-import dripcheckImg from './assets/projects/dripcheck.png'
+import ccsdImg from './assets/projects/ccsd.png';
+import dripcheckImg from './assets/projects/dripcheck.png';
+
 function App() {
   const [activeProject, setActiveProject] = useState(null);
+  
+  // 1. TOP-LEVEL STATE FOR THE TERMINAL CONTACT FORM
+  const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SUBMITTING, SUCCESS, ERROR
+
   const projects = [
     {
       id: 'dripcheck',
@@ -71,8 +76,37 @@ function App() {
     },
   ];
 
-
   const closeModal = () => setActiveProject(null);
+
+  // 2. CLEANLY ISOLATED ASYNCHRONOUS FORM SUBMISSION HANDLER
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus("SUBMITTING");
+    
+    const form = e.target;
+    const data = new FormData(form);
+    
+    data.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setFormStatus("SUCCESS");
+        form.reset();
+      } else {
+        setFormStatus("ERROR");
+      }
+    } catch (error) {
+      setFormStatus("ERROR");
+    }
+  };
 
   return (
     <div className="container">
@@ -82,41 +116,35 @@ function App() {
       </header>
 
       <main>
+        {/* INVENTORY SECTION */}
         <section className="section">
-          <h2>&gt; INVENTORY (Skills)</h2>
-            <ul className="inventory">
-              {/* Core Languages */}
-              <li>JavaScript</li>
-              <li>Python</li>
-              <li>Java</li>
-              <li>PHP</li>
-  
-              {/* Frameworks & Libraries */}
-              <li>React.js / Native</li>
-              <li>Node.js / Express</li>
-              <li>Laravel</li>
-              <li>Angular</li>
-              <li>LangChain</li>
-  
-              {/* Databases & Storage */}
-              <li>MongoDB</li>
-              <li>MySQL</li>
-              <li>Qdrant (Vector DB)</li>
-              <li>Cloudinary CDN</li>
-  
-              {/* Data Science & Tools */}
-              <li>Pandas / NumPy</li>
-              <li>Matplotlib / Seaborn</li>
-              <li>Docker</li>
-              <li>Git</li>
-              <li>Script Automation</li>
-            </ul>
+          <h2>&gt; INVENTORY</h2>
+          <ul className="inventory">
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>PHP</li>
+            <li>React.js / Native</li>
+            <li>Node.js / Express</li>
+            <li>Laravel</li>
+            <li>Angular</li>
+            <li>LangChain</li>
+            <li>MongoDB</li>
+            <li>MySQL</li>
+            <li>Qdrant (Vector DB)</li>
+            <li>Cloudinary CDN</li>
+            <li>Pandas / NumPy</li>
+            <li>Matplotlib / Seaborn</li>
+            <li>Docker</li>
+            <li>Git</li>
+            <li>Script Automation</li>
+          </ul>
         </section>
 
+        {/* SAVE FILES SECTION */}
         <section className="section">
-          <h2>&gt; SAVE FILES (Projects)</h2>
+          <h2>&gt; SAVE FILES</h2>
           <div className="grid">
-            {/* Map through the projects array to generate cards dynamically */}
             {projects.map((proj) => (
               <div 
                 key={proj.id} 
@@ -134,18 +162,71 @@ function App() {
           </div>
         </section>
 
+        {/* CONTINUE? (CONTACT) SECTION */}
         <section className="section">
           <h2>&gt; CONTINUE? (Contact)</h2>
           <div className="card">
-            <p>Ready to deploy me to your team?</p>
-            <br />
-            <p>Email: <a href="mailto:wiporamirez.01@gmail.com">wiporamirez.01@gmail.com</a></p>
-            <p>GitHub: <a href="https://github.com/Ecila-01" target="_blank" rel="noreferrer">github.com/Ecila-01</a></p>
-            <br />
-            <p className="blink" style={{color: 'var(--accent)'}}>INSERT COIN TO CONNECT</p>
+            <p style={{ marginBottom: '1.5rem' }}>Ready to deploy me to your team?</p>
+            
+            {/* CONDITIONAL RENDERING REFACTOR BASED ON STATE STATE MACHINE */}
+            {formStatus === "SUCCESS" ? (
+              <div className="terminal-alert success-box">
+                <h3>[ TRANSMISSION SUCCESSFUL ]</h3>
+                <br />
+                <p className="blink">&gt; DATA RECEIVED BY PLAYER 1.</p>
+                <p>&gt; ENCRYPTED SIGNAL SENT TO INBOX.</p>
+                <br />
+                <button 
+                  onClick={() => setFormStatus("IDLE")} 
+                  className="form-submit-btn" 
+                  style={{ width: 'auto', padding: '0.5rem 1rem' }}
+                >
+                  [ SEND ANOTHER MESSAGE ]
+                </button>
+              </div>
+            ) : (
+              <form 
+                onSubmit={handleFormSubmit}
+                action="https://api.web3forms.com/submit" 
+                method="POST"
+                className="terminal-form"
+              >
+                <div className="form-group">
+                  <label>&gt; INPUT_NAME:</label>
+                  <input type="text" name="name" required placeholder="PLAYER 1" disabled={formStatus === "SUBMITTING"} />
+                </div>
+
+                <div className="form-group">
+                  <label>&gt; INPUT_EMAIL:</label>
+                  <input type="email" name="email" required placeholder="RECRUITER@COMPANY.COM" disabled={formStatus === "SUBMITTING"} />
+                </div>
+
+                <div className="form-group">
+                  <label>&gt; INPUT_MESSAGE:</label>
+                  <textarea name="message" required rows="4" placeholder="ENTER MISSION DETAILS..." disabled={formStatus === "SUBMITTING"}></textarea>
+                </div>
+
+                <button type="submit" className="form-submit-btn" disabled={formStatus === "SUBMITTING"}>
+                  {formStatus === "SUBMITTING" ? "[ TRANSMITTING... ]" : "[ TRANSMIT MESSAGE ]"}
+                </button>
+
+                {formStatus === "ERROR" && (
+                  <p style={{ color: 'var(--accent)', fontSize: '0.65rem', marginTop: '1rem', textAlign: 'center' }}>
+                    &gt; ERROR: TRANSMISSION FAILED. PLEASE TRY AGAIN.
+                  </p>
+                )}
+              </form>
+            )}
+
+            <div className="contact-links" style={{ marginTop: '2rem', borderTop: '1px dashed var(--text-dim)', paddingTop: '1.5rem' }}>
+              <p>Direct Link: <a href="mailto:wiporamirez.01@gmail.com">wiporamirez.01@gmail.com</a></p>
+              <p>GitHub: <a href="https://github.com/Ecila-01" target="_blank" rel="noreferrer">github.com/Ecila-01</a></p>
+            </div>
           </div>
         </section>
       </main>
+
+      {/* MODAL OVERLAY PORTAL */}
       {activeProject && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -155,7 +236,6 @@ function App() {
             <span className="modal-tech">Tech Stack // {activeProject.tech}</span>
             
             <div className="modal-body">
-              {/* LEFT COLUMN: Screenshot Box */}
               <div className="modal-left">
                 {activeProject.img && (
                   <div className="crt-image-wrapper">
@@ -168,13 +248,11 @@ function App() {
                 )}
               </div>
 
-              {/* RIGHT COLUMN: Technical Details */}
               <div className="modal-right">
                 <div className="modal-desc">
                   {activeProject.longDesc}
                 </div>
                 
-                {/* Dynamic GitHub Link button */}
                 {activeProject.github && (
                   <div style={{ marginTop: 'auto', paddingTop: '1.5rem', width: '100%' }}>
                     <a 
