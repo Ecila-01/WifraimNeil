@@ -159,17 +159,23 @@ ul.inventory li {
 .bullet-arrow {
   width: 0;
   height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 9px solid var(--text-main);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid var(--text-main);
   margin-right: 8px;
   flex-shrink: 0;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
+
 /* Utility Animations & Global Links */
 .blink {
   animation: blinker 1s linear infinite;
 }
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
 /* --- DESKTOP GRID ADJUSTMENTS --- */
 @media (min-width: 768px) {
   ul.inventory {
@@ -179,6 +185,13 @@ ul.inventory li {
   ul.inventory li {
     font-size: 0.8rem; 
     padding: 0.5rem 1rem;
+  }
+
+  .bullet-arrow {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid var(--text-main);
+    transform: translateY(-1px);
   }
 }
 @keyframes blinker {
