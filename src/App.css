@@ -1,0 +1,405 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & CRT SIMULATION
+   ========================================================================== */
+:root {
+  --bg-color: #050505;
+  --text-main: #39ff14; /* Neon Green */
+  --text-dim: #1e820c;
+  --accent: #ff0055; /* Neon Pink */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* CRT Scanline Overlay Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed; /* Fixed ensures it stays locked to screen on scroll */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.06), 
+    rgba(0, 255, 0, 0.02), 
+    rgba(0, 0, 255, 0.06)
+  );
+  z-index: 9999; /* Higher than modal overlays */
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   2. MAIN PORTFOLIO LAYOUT
+   ========================================================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 3;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 4rem;
+  border: 4px solid var(--text-main);
+  padding: 2rem;
+  box-shadow: 0 0 10px var(--text-main), inset 0 0 10px var(--text-main);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px var(--text-dim);
+}
+
+h2 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px dashed var(--accent);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+/* Grid layout for Main Page Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  border: 2px solid var(--text-main);
+  padding: 1.5rem;
+  transition: transform 0.2s, background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background-color: rgba(57, 255, 20, 0.1);
+  cursor: crosshair;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+.card p {
+  font-size: 0.7rem;
+  line-height: 1.8;
+  text-align: center; 
+}
+.card p.blink {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.65rem;
+}
+/* Skills Block Badges */
+ul.inventory {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+ul.inventory li {
+  font-size: 0.8rem;
+  background: var(--text-dim);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--text-main);
+}
+
+/* Utility Animations & Global Links */
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. RETRO MODAL PLATFORM WINDOW
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: var(--bg-color);
+  border: 2px solid var(--text-main); 
+  padding: 3rem 2rem 2rem; 
+  width: 90vw; 
+  height: 85vh; 
+  max-width: 1400px; 
+  position: relative;
+  box-shadow: 8px 8px 0px var(--text-dim); 
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column; /* Default stack on mobile screen sizes */
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-grow: 1; 
+  overflow: hidden; /* Encapsulates scrolling within individual columns */
+}
+
+.modal-tech {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  border-bottom: 1px dashed var(--text-dim);
+  padding-bottom: 1rem;
+}
+
+/* Close Box Utility Interface */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--bg-color);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: var(--accent);
+  color: var(--bg-color);
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   4. LEFT COLUMN - 5:4 RETRO HARDWARE MONITOR
+   ========================================================================== */
+.modal-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem; /* Small padding to keep it tightly anchored near the borders */
+}
+
+.crt-image-wrapper {
+  width: 100%;
+  aspect-ratio: 5 / 4; /* Perfect historical 1280x1024 aspect box */
+  
+  /* REMOVED: max-width: 440px and max-height: 352px constraints are GONE.
+     This allows the container to dynamically scale up to the absolute limits 
+     of the modal's available height and width space. 
+  */
+  max-width: 100%; 
+  max-height: 100%;
+
+  background-color: #0d0d0d; 
+  border: 2px solid var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+}
+.retro-screenshot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Forces your 5:4 crop to smoothly expand edge-to-edge */
+  object-position: center;
+  padding: 0.5rem; /* Beautiful distinct physical monitor bezel border */
+}
+
+/* Ambient Scanner Scanning Line Overlay */
+.crt-image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    rgba(57, 255, 20, 0) 0%,
+    rgba(57, 255, 20, 0.15) 80%,
+    rgba(57, 255, 20, 0.3) 100%
+  );
+  animation: scanRadar 4s linear infinite;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes scanRadar {
+  0% { top: -20%; }
+  100% { top: 120%; }
+}
+
+/* Subtle scanlines mapped directly to the monitor wrapper scope */
+.crt-image-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: repeating-linear-gradient(
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   5. RIGHT COLUMN - CRISP CLEAN TERMINAL TECH LOGS
+   ========================================================================== */
+.modal-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto; 
+  max-height: 100%; 
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+
+.modal-desc {
+  text-align: left !important; 
+  width: 100%;
+  color: #ffffff;
+  
+  /* THE BIG READABILITY TRICK: Switch to a crisp monospace sans-serif 
+     only for dense paragraph blocks so technical recruiters can easily read it. */
+  font-family: 'Courier New', Consolas, Monaco, monospace;
+  font-size: 0.85rem; /* Clean readable scale for standard monospace text */
+  font-weight: bold;
+  line-height: 1.6; 
+  letter-spacing: 0.5px;
+}
+
+/* Keep the bold section labels in the retro theme font to match the aesthetic */
+.modal-desc p strong {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--text-main);
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem; /* Adjusted for pixel font display constraints */
+  letter-spacing: 0px;
+}
+
+/* Clean list alignment for technical logs */
+.modal-desc ul {
+  text-align: left !important;
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.modal-desc li {
+  text-align: left !important;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+/* Code block highlight tags */
+.modal-desc code {
+  background: #1a1a1a;
+  color: var(--accent);
+  padding: 0.1rem 0.4rem;
+  border: 1px solid #333;
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESKTOP COLUMN DISTRIBUTION
+   ========================================================================== */
+@media (min-width: 992px) {
+  .modal-body {
+    flex-direction: row; 
+    align-items: stretch; 
+    gap: 2.5rem;
+  }
+  
+  .modal-left {
+    /* Give the left column 60% of the modal width space so the screenshot 
+       becomes massive and fills up the empty black space */
+    flex: 1.2; 
+  }
+  
+  .modal-right {
+    /* Give the text 40% of the layout space */
+    flex: 0.8; 
+    border-left: 2px dashed var(--text-dim); 
+    padding-left: 2.5rem;
+    padding-right: 0.5rem;
+  }
+}
