@@ -45,7 +45,6 @@ function App() {
           <span>Workflow Scheduling Hub</span>
         </>
       ),
-      // UPDATED DATABASE VALUE HERE:
       tech: 'React.js, Node.js, Express.js, MongoDB, RESTful APIs, Git', 
       shortDesc: 'A dual-portal administrative web platform featuring a comprehensive appointment scheduling system and real-time workflow management infrastructure.',
       longDesc: (
