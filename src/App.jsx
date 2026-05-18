@@ -45,7 +45,8 @@ function App() {
           <span>Workflow Scheduling Hub</span>
         </>
       ),
-      tech: 'React.js, Node.js, Express.js, MySQL, RESTful APIs, Git',
+      // UPDATED DATABASE VALUE HERE:
+      tech: 'React.js, Node.js, Express.js, MongoDB, RESTful APIs, Git', 
       shortDesc: 'A dual-portal administrative web platform featuring a comprehensive appointment scheduling system and real-time workflow management infrastructure.',
       longDesc: (
         <>
@@ -56,7 +57,7 @@ function App() {
             <li><strong>Segregated Role Architecture:</strong> Features completely independent user and administrator portals, enforcing strict access controls and ensuring secure data boundaries based on administrative privileges.</li>
             <li><strong>Real-Time Workflow Orchestration:</strong> Equips system administrators with a comprehensive dashboard layout to monitor active appointments, update booking statuses, and manage daily operational workflows on the fly.</li>
             <li><strong>Interactive Schedule Management:</strong> Provides clients with a fluid interface to dynamically request, modify, or cancel time slots while strict backend validation rule checks automatically prevent resource conflicts.</li>
-            <li><strong>Transactional Consistency:</strong> Backed by an optimized relational database schema handled via a secure Express API server, ensuring robust data modification logging and rapid response times for concurrent CRUD requests.</li>
+            <li><strong>Transactional Consistency:</strong> Backed by an optimized database schema handled via a secure Express API server, ensuring robust data modification logging and rapid response times for concurrent CRUD requests.</li>
           </ul>
         </>
       ),
