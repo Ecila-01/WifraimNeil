@@ -71,7 +71,7 @@ function App() {
           <span>Intelligent Ordinance Analysis Platform</span>
         </>
       ),
-      tech: 'Python, LangChain, Node.js, Express, Qdrant Cloud, MongoDB Atlas, Docker',
+      tech: 'React.js, Python, LangChain, Node.js, Express, Qdrant Cloud, MongoDB Atlas, Cloudinary CDN, Docker',
       shortDesc: 'A production-ready Retrieval-Augmented Generation (RAG) platform built to index, search, and analyze local government ordinances using Gemini 2.5 Flash.',
       longDesc: (
         <>
