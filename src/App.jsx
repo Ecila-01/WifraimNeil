@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 import batasImg from './assets/projects/batas.png';
 import ccsdImg from './assets/projects/ccsd.png';
@@ -118,7 +119,7 @@ function App() {
       } else {
         setFormStatus("ERROR");
       }
-    } catch (error) {
+    } catch {
       setFormStatus("ERROR");
     }
   };
@@ -286,6 +287,7 @@ function App() {
           </div>
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
