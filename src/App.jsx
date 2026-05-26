@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 import batasImg from './assets/projects/batas.png';
 import ccsdImg from './assets/projects/ccsd.png';
@@ -125,6 +126,7 @@ function App() {
 
   return (
     <div className="container">
+      <Analytics />
       <header>
         <h1>Player 1: Wifraim Neil San Miguel</h1>
         <p>Full-Stack Developer <span className="blink">_</span></p>
